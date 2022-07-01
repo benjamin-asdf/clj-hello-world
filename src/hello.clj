@@ -144,9 +144,6 @@
     ;; there is a handful of dedicated constructs for state
     ;; 95% of the time you just see `atom` together with `swap!`
     ;; these replace all the setters and getters you would have
-    ;; they are made to be thread save
-    ;; you put immutable values into them, you can always read
-    ;; and atomically update, with pure functions
 
     (def my-state (atom 10))
 
