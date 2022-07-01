@@ -54,26 +54,6 @@
 
     (keyword? :fa)
 
-    (->>
-     (clojure.reflect/reflect java.util.Map)
-     :members
-     (filter
-      (comp :public :flags)
-      ;; (fn [m] (:public (:flags m)))
-      ))
-
-    (contains? #{1 2 3} 1)
-
-    (#{1 2 3} 3)
-    3
-
-    (:fo #{1 2 :fo})
-    :fo
-
-    {:fo 10}
-
-    (eval (conj (read-string "(1 2 3)") '+))
-    6
 
     ;; symbols and keywords
     ;; keywords are like enums in other langs
@@ -153,4 +133,34 @@
 
     ;; https://github.com/functional-koans/clojure-koans
     ;; https://github.com/seancorfield/usermanager-example
-    ))
+    )
+
+
+  ;; some magic starting to happen
+
+  (->>
+   (clojure.reflect/reflect java.util.Map)
+   :members
+   (filter
+    (comp :public :flags)))
+
+  (contains? #{1 2 3} 1)
+
+  ;; sets are functions
+
+  (#{1 2 3} 3)
+  3
+
+  ;; keywords are functions, why not?
+
+  (:fo #{1 2 :fo})
+  :fo
+
+  ;; it is a lisp, there is a reader and evaluator
+  ;; these are separate things that are part of your program
+  ;; you can be the middleman
+
+  (eval (conj (read-string "(1 2 3)") '+))
+  6
+
+  )
